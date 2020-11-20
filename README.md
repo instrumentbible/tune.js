@@ -3,6 +3,15 @@
 
 JavaScript library for various tuning systems.   Calculate cents for different temperaments.
 
+> DISCLAIMER: this library is a work in progress
+
+# Features 
+* calculate cents based on various temperaments
+* caluclate nth harmonic of a given frequency
+* ftom (frequency to MIDI function)
+* mtof (MIDI to frequency function)
+* get note name for a given MIDI note
+
 ## supported temperaments
 * [Equal Temperament](https://en.wikipedia.org/wiki/Equal_temperament)
 * [Pythagorean](https://en.wikipedia.org/wiki/Pythagorean_tuning)
@@ -134,7 +143,7 @@ Set the temperament for a given tuner.
 Examples
 ```js
 // create a new tuner with meantone temperament
-var myTuner = new Tuner.({
+var myTuner = new Tuner({
 	temperament: "meantone"
 });
 
@@ -152,11 +161,12 @@ Set the target frequency for a given tuner.
 > Type: `number`  
 > Default: `440`
 > Available values: `integer` or `float` 
-> 
+
+
 Examples
 ```js
 // create a new tuner with fundamental 440
-var myTuner = new Tuner.({
+var myTuner = new Tuner({
 	fundamental: 440
 });
 
@@ -176,7 +186,7 @@ Calculte cents
 Examples
 ```js
 // create a new tuner
-var myTuner = new Tuner.({
+var myTuner = new Tuner({
 	temperament: 'meantone',
 	fundamental: 440
 });
