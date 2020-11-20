@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+    <title>Tune.js</title>
+	<meta charset="utf-8" />
+	
+	<!-- import JS dependencies -->
+    <script src="js/tune.js"></script>
+	
+</head>
+<body>
+
+<script>
+
+	var options = {
+		temperament: "equal",
+		fundamental: 440
+	}
+
+	// create a new tuner
+	var myTuner = new Tuner(options)
+
+	// set the temperament
+	myTuner.setTemperament("meantone");
+	
+	myTuner.tune(441);
+
+	
+	
+	// get the current temperament
+	//console.log(myTuner.getTemperament())
+	//console.log(myStaff.getNotes())
+
+
+	//Tuner.ftom(523.25)
+
+	//console.log(Tuner.mtof(69))
+
+	
+	//console.log(Tuner.harmonic(440,3))
+	//console.log(Tuner.getNoteName(63))
+
+	</script>
+</body>

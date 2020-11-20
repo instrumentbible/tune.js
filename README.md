@@ -1,18 +1,16 @@
 # tune.js 🎵
 ![GitHub](https://img.shields.io/github/license/instrumentbible/tune.js) 
 
-
-JavaScript library for various tuning systems. 
-
-Calculate cents for different temperaments.
-
+JavaScript library for various tuning systems.   Calculate cents for different temperaments.
 
 ## supported temperaments
-* Equal temperament
-* Pythagorean 
-* Meantone
-* Werkmeister
-
+* [Equal Temperament](https://en.wikipedia.org/wiki/Equal_temperament)
+* [Pythagorean](https://en.wikipedia.org/wiki/Pythagorean_tuning)
+* [Meantone](https://en.wikipedia.org/wiki/Meantone_temperament)
+* [Werkmeister I](https://en.wikipedia.org/wiki/Werckmeister_temperament#Werckmeister_I_(III):_%22correct_temperament%22_based_on_1/4_comma_divisions)
+* [Werkmeister II](https://en.wikipedia.org/wiki/Werckmeister_temperament#Werckmeister_II_(IV):_another_temperament_included_in_the_Orgelprobe,_divided_up_through_1/3_comma)
+* [Werkmeister III](https://en.wikipedia.org/wiki/Werckmeister_temperament#Werckmeister_III_(V):_an_additional_temperament_divided_up_through_1/4_comma)
+* [Werkmeister IV](https://en.wikipedia.org/wiki/Werckmeister_temperament#Werckmeister_IV_(VI):_the_Septenarius_tunings)
 
 # Setup
 import **tune.js** library
@@ -22,72 +20,168 @@ import **tune.js** library
 
 now you can use the library to create a tuner
 ```javascript
-// these are the options
+// tuner options
 var options = {
-	temperament: "equal",
+	temperament: 'equal',
 	fundamental: 440
-}
+};
 
 // create a new tuner
-var myTuner = new Tuner(options)
+var myTuner = new Tuner(options);
+```
+
+
+# Functions
+
+## temperament
+set the current temperament
+```js
+myTuner.setTemperament("meantone");
+```
+get the current temperament
+```js
+myTuner.getTemperament();
+// meantone
 ```
 
 
 
-
-# Functions
 ## tune
 calculate the cents given a specific frequency
-
-tune(`frequency`)
-```javascript
-tune(448)
+```js
+myTuner.tune(448);
 // -7.887184708183386
 ```
 
 
-## target frequencies
-
-calculate the target frequencies for a given 
-
-
-s
-
-```javascript
-calculateTargetFrequencies('meantone', 440)
-```
+# Other (static) functions
 
 ## harmonic series
 
 get **n**<sup>th</sup> harmonic of a given frequency
 
-harmonic(`partial`, `frequency`)
+harmonic(`frequency`, `partial`)
+
+get the 3rd harmonic of `440`
 ```javascript
-harmonic(4, 440)
-// 1760
+Tuner.harmonic(440, 3);
+// 1320
 ```
 
 
 ## MIDI to frequency (mtof)
 calculate the frequency given a specific MIDI note
-```javascript
-mtof(60)
+```js
+Tuner.mtof(60);
 // 261.6255653005986
 ```
 
-
 ## frequency to MIDI (ftom)
 calculate the MIDI note given a specific frequency
-```javascript
-ftom(440)
+```js
+Tuner.ftom(440);
 // 69
 ```
 
 ## MIDI note to note name
 
-```javascript
-toNoteName(64)
-// 69
+get note name from MIDI note number
+
+you can use a negative number to get the flat
+```js
+Tuner.getNoteName(63);
+// D#
+
+// use negative number for flat
+Tuner.getNoteName(-63);
+// Eb
+```
+
+or use a second argument `sharp` or `flat`
+```js
+Tuner.getNoteName(63, 'flat');
+// Eb
+
+Tuner.getNoteName(63, 'sharp');
+// D#
 ```
 
 
+
+
+
+
+
+//////////// API BELOW
+# tune.js API
+
+## attributes
+| attribute | type | options | default |
+| :- | :-: | :-: | :-: |
+| **`temperament`** | string | `equal`, `just`, `pythagorean`, `meantone`, 	`werckmeister`| `equal` |
+| **`fundamental`** | number | any `integer` or `float`  | `440` | 
+
+
+# Options
+
+## `temperament`
+Set the temperament for a given tuner. 
+
+> Type: `string` 
+> Default: `treble`
+> Available values: `equal` `just` `pythagorean` `meantone` `werckmeisterI` `werckmeisterII` `werckmeisterIII`
+
+Examples
+```js
+// create a new tuner with meantone temperament
+var myTuner = new Tuner.({
+	temperament: "meantone"
+});
+
+// set temperament to pythagorean 
+myTuner.setTemperament('pythagorean');
+
+// get current temperament
+myTuner.getTemperament();
+// pythagorean
+```
+
+## `fundamental`
+Set the target frequency for a given tuner. 
+
+> Type: `number`  
+> Default: `440`
+> Available values: `integer` or `float` 
+> 
+Examples
+```js
+// create a new tuner with fundamental 440
+var myTuner = new Tuner.({
+	fundamental: 440
+});
+
+// update fundamental to 442
+myTuner.setFundamental(442);
+
+// get current temperament
+myTuner.getFundamental();
+// 442
+```
+
+# Functions
+
+## `tune()`
+Calculte cents
+
+Examples
+```js
+// create a new tuner
+var myTuner = new Tuner.({
+	temperament: 'meantone',
+	fundamental: 440
+});
+
+// calculate cents
+myTuner.tune(439);
+// -3.939100787161778
+```
