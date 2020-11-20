@@ -121,6 +121,10 @@ class Tuner {
 		this.ratios 	 		= options.ratios			|| equal;
 		this.targetFrequencies 	= options.targetFrequencies	|| [];
 		this.midPoints			= options.midPoints 		|| [];
+		this.temperature		= options.temperature 		|| 70; // temperature (used to calulate speed of sound)
+		this.speedOfSound		= options.speedOfSound 		|| 343;
+		this.wavelength			= options.wavelength 		|| 0;
+		this.frequency			= options.frequency 		|| 440; // incoming frequency
 
 	}
     
@@ -214,8 +218,19 @@ class Tuner {
 	// tune (calcultes cents)
 	tune(e) {
 		
+		this.frequency = e;
+		console.log(this.frequency);
+		
+		
+		
+		//getWavelength
+		
+		
+		this.wavelength = this.speedOfSound / this.frequency;
 		var frequency = e;
 		var cents;
+		
+		
 		
 		// get the highest of the midPoints, then devide by two
 		// this will be the low threshold...if higher, we multiply by 2
@@ -305,5 +320,43 @@ class Tuner {
 		}
 		
 	}
-
+	
+	// set temperature (used to calculate speed of sound)
+	setTemperature(temp) {
+		this.temperature = temp; // temperature in fehrenheit
+		var celsius = (this.temperature - 32) * (5 / 9);
+		this.speedOfSound = 331.39 + (.6 * celsius); // (meters per second)
+		
+		// TO DO:
+		// calculate ft/s & mi/hr
+	}
+	
+	// set speed of sound
+	setSpeedOfSound(e){
+		
+	}
+												 
+	 // get speed of sound
+	 getSpeedOfSound(){
+		 return this.speedOfSound;
+	 }
+	
+	// set wavelength
+	setWavelength(e){
+		this.wavelength = e;
+		this.frequency = this.speedOfSound / this.wavelength;
+	}
+	
+	// get wavelength
+	getWavelength() {
+		return this.wavelength;
+	}
+	
 }
+
+
+/*
+ function calculateCents(freq1, freq2) {
+	 var cents = Math.log2(freq2 / freq1) * 1200;
+ }
+ */

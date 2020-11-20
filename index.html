@@ -5,34 +5,42 @@
     <title>Tune.js</title>
 	<meta charset="utf-8" />
 	
-	<!-- import JS dependencies -->
+	<!-- import tune.js -->
     <script src="js/tune.js"></script>
-	
+
 </head>
 <body>
-
-<script>
-
-	var options = {
-		temperament: "equal",
-		fundamental: 440
-	}
-
-	// create a new tuner
-	var myTuner = new Tuner(options)
-
-	// set the temperament
-	myTuner.setTemperament("meantone");
 	
-	myTuner.tune(441);
+	<script>
 
-	// get the current temperament
-	//console.log(myTuner.getTemperament());
-	//console.log(myStaff.getNotes());
-	//console.log(Tuner.ftom(523.25));
-	//console.log(Tuner.mtof(69));
-	//console.log(Tuner.harmonic(440,3));
-	//console.log(Tuner.getNoteName(63));
+		var options = {
+			temperament: "equal",
+			fundamental: 440
+		}
 
+		// create a new tuner
+		var myTuner = new Tuner(options)
+
+		// set the temperament
+		myTuner.setTemperament("meantone");
+		
+		myTuner.tune(44);
+
+		myTuner.setWavelength(0.777);
+
+		// get the current temperament
+		//console.log(myTuner.getTemperament());
+
+		//console.log(Tuner.ftom(523.25));
+		//console.log(Tuner.mtof(69));
+		//console.log(Tuner.harmonic(440,3));
+		//console.log(Tuner.getNoteName(63));
+
+		 myTuner.setTemperature(70);
+
+		 console.log(myTuner.getWavelength());
+		 
 	</script>
+
 </body>
+</html>

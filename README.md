@@ -3,6 +3,7 @@
 JavaScript library for various tuning systems.   Calculate cents for different temperaments.
 
 > DISCLAIMER: this library is a work in progress
+Try the [live demo](https://instrumentbible.github.io/tune.js/).
 
 # Features 
 * calculate cents based on various temperaments
@@ -28,10 +29,15 @@ import **tune.js** library
 
 now you can use the library to create a tuner
 ```javascript
-// tuner options
+// create a tuner
+myTuner = new Tuner();
+```
+
+```javascript
+// use custom options
 var options = {
-temperament: 'equal',
-fundamental: 440
+	temperament: 'equal',
+	fundamental: 440
 };
 
 // create a new tuner
@@ -70,7 +76,7 @@ get **n**<sup>th</sup> harmonic of a given frequency
 
 harmonic(`frequency`, `partial`)
 
-get the 3rd harmonic of `440`
+get the 3<sup>rd</sup> harmonic of `440`
 ```javascript
 Tuner.harmonic(440, 3);
 // 1320
@@ -105,13 +111,13 @@ Tuner.getNoteName(-63);
 // Eb
 ```
 
-or use a second argument `sharp` or `flat`
+or use a second argument `sharp` or `flat` to get enharmonic note name
 ```js
-Tuner.getNoteName(63, 'flat');
-// Eb
-
 Tuner.getNoteName(63, 'sharp');
 // D#
+
+Tuner.getNoteName(63, 'flat');
+// Eb
 ```
 
 
@@ -120,7 +126,6 @@ Tuner.getNoteName(63, 'sharp');
 
 
 
-//////////// API BELOW
 # tune.js API
 
 ## attributes
@@ -136,7 +141,7 @@ Tuner.getNoteName(63, 'sharp');
 Set the temperament for a given tuner. 
 
 > Type: `string` 
-> Default: `treble`
+> Default: `equal`
 > Available values: `equal` `just` `pythagorean` `meantone` `werckmeisterI` `werckmeisterII` `werckmeisterIII`
 
 Examples
