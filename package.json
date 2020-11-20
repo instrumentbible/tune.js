@@ -1,0 +1,28 @@
+{
+  "name": "tune.js",
+  "version": "1.0.0",
+  "description": "A JavaScript library for various tuning systems.",
+  "main": "index.js",
+  "scripts": {
+	"test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+	"name": "Instrument Bible LLC",
+	"email": "contact@instrument.bible",
+	"url": "https://instrument.bible"
+  },
+  "license": "MIT",
+  "repository": {
+	"type": "git",
+	"url": "https://github.com/instrumentbible/tune.js"
+  },
+  "bugs": {
+	"url": "https://github.com/instrumentbible/tune.js/issues"
+  },
+  "homepage": "https://github.com/instrumentbible/tune.js#readme",
+  "keywords": [
+	"music",
+	"tuner",
+	"acoustics"
+  ]
+}

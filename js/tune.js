@@ -134,11 +134,16 @@ class Tuner {
 		window[this.temperament].forEach(function(r, i) {
 					
 			// if a just tuning (pure ratios)
-			if (e == 'just' || e == 'meantone' || e == 'pythagorean' ){
+			if (e == 'just' 		||
+				e == 'meantone'		||
+				e == 'pythagorean'	){
 				newRatios.push(r[0] / r[1]);
 			}
 			// other temperaments (non-pure ratios)
-			else if (e == 'equal' || e == 'werckmeisterI' || e == 'werckmeisterII' || e == 'werckmeisterIII'){
+			else if (e == 'equal' 			||
+					 e == 'werckmeisterI' 	||
+					 e == 'werckmeisterII' 	||
+					 e == 'werckmeisterIII' ){
 				newRatios.push(r);
 			}
 			
@@ -174,13 +179,11 @@ class Tuner {
 			// calculate target frequencies given the ratios
 			var newTargetFreqs = [];
 			this.ratios.forEach(function(r, i) {
-				//console.log(r, i);
 				newTargetFreqs.push(r * funda);
 			});
 
 			// array of target frequencies
 			this.targetFrequencies = newTargetFreqs;
-			console.log(this.targetFrequencies);
 				
 			function diff(ary) {
 				var newA = [];
@@ -201,13 +204,16 @@ class Tuner {
 			});
 
 			this.midPoints = newMidPoints;
-			// console.log(this.midPoints);
+			
 		}
-		catch (err){console.log(err)}
+		catch (err){
+			console.error(err);
+		}
 	}
 	
 	// tune (calcultes cents)
 	tune(e) {
+		
 		var frequency = e;
 		var cents;
 		
@@ -218,9 +224,15 @@ class Tuner {
 		
 		// multiply/divide frequency until between 440 & 880
 		for (let step = 0; step < 100; step++) {
-			if 		(frequency < highMidPoint)      { frequency = frequency * 2; }
-			else if (frequency > highMidPoint * 2)  { frequency = frequency / 2; }
-			else                                   	{ break; }
+			if (frequency < highMidPoint) {
+				frequency = frequency * 2;
+			}
+			else if (frequency > highMidPoint * 2) {
+				frequency = frequency / 2;
+			}
+			else {
+				break;
+			}
 		}
 
 		// for each value in midPoints array, loop until

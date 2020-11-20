@@ -1,5 +1,4 @@
 # tune.js 🎵
-![GitHub](https://img.shields.io/github/license/instrumentbible/tune.js) 
 
 JavaScript library for various tuning systems.   Calculate cents for different temperaments.
 
@@ -7,7 +6,7 @@ JavaScript library for various tuning systems.   Calculate cents for different t
 
 # Features 
 * calculate cents based on various temperaments
-* caluclate nth harmonic of a given frequency
+* calculate n<sup>th</sup> harmonic of a given frequency
 * ftom (frequency to MIDI function)
 * mtof (MIDI to frequency function)
 * get note name for a given MIDI note
@@ -31,8 +30,8 @@ now you can use the library to create a tuner
 ```javascript
 // tuner options
 var options = {
-	temperament: 'equal',
-	fundamental: 440
+temperament: 'equal',
+fundamental: 440
 };
 
 // create a new tuner
@@ -173,7 +172,7 @@ var myTuner = new Tuner({
 // update fundamental to 442
 myTuner.setFundamental(442);
 
-// get current temperament
+// get current fundamental
 myTuner.getFundamental();
 // 442
 ```
