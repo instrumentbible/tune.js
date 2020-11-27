@@ -1,46 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	
-    <title>Tune.js</title>
-	<meta charset="utf-8" />
-	
-	<!-- import tune.js -->
-    <script src="js/tune.js"></script>
-
-</head>
-<body>
-	
-	<script>
-
-		var options = {
-			temperament: "equal",
-			fundamental: 440
-		}
-
-		// create a new tuner
-		var myTuner = new Tuner(options)
-
-		// set the temperament
-		myTuner.setTemperament("meantone");
+<!doctype html>
+<html>
+	<head>
+		<title>tune.js</title>
+		<meta charset="utf-8" />
+		<link href='./css/style.css' rel='stylesheet'>
+	</head>
+	<body>
 		
-		myTuner.tune(44);
+		<select id="audioSource"></select>
+		<br>
+		<audio controls id="audioElement"></audio>
+		
+		<p>
+			<button onclick="this.innerText = togglePlayback()">use demo audio</button>
+			<button onclick="toggleLiveInput()">use live input</button>
+			<button onclick="toggleOscillator()">use oscillator</button>
+			<!--<button onclick="updatePitch(0);">sample</button>-->
+		</p>
 
-		myTuner.setWavelength(0.777);
+		<div id="detector" class="vague">
+			<div class="pitch"><span id="pitch">--</span> Hz</div>
+			<div class="note"><span id="note">--</span></div>
+			<canvas id="output" width=300 height=42></canvas>
+			<div id="detune"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
+		</div>
 
-		// get the current temperament
-		//console.log(myTuner.getTemperament());
+		<canvas id="waveform" width="512" height="256"></canvas>
+		
+		<script src="/js/tune.js"></script>
+		<script>
+			
+			var options = {
+			 temperament: "equal",
+			 fundamental: 440
+		 }
 
-		//console.log(Tuner.ftom(523.25));
-		//console.log(Tuner.mtof(69));
-		//console.log(Tuner.harmonic(440,3));
-		//console.log(Tuner.getNoteName(63));
+		 // create a new tuner
+		 var myTuner = new Tuner(options)
+		 // set the temperament
+		 myTuner.setTemperament("meantone");
+		 myTuner.tune(44);
+		 myTuner.setWavelength(0.777);
 
-		 myTuner.setTemperature(70);
+		 // get the current temperament
+		 //console.log(myTuner.getTemperament());
 
-		 console.log(myTuner.getWavelength());
-		 
-	</script>
+		 //console.log(Tuner.ftom(523.25));
+		 //console.log(Tuner.mtof(69));
+		 //console.log(Tuner.harmonic(440,3));
+		 //console.log(Tuner.getNoteName(63));
 
-</body>
+		  myTuner.setTemperature(70);
+
+		  console.log(myTuner.getWavelength());
+		  			</script>
+	</body>
 </html>

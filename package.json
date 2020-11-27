@@ -13,7 +13,7 @@
     "url": "git+https://github.com/instrumentbible/tune.js.git"
   },
   "publishConfig": {
-	"registry":"https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com"
   },
   "bugs": {
     "url": "https://github.com/instrumentbible/tune.js/issues"
