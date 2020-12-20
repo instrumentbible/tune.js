@@ -457,17 +457,18 @@ function firstClick(e) {
 	analyser.fftSize = 2048;
 	navigator.mediaDevices.getUserMedia({ video:false, audio: !this.isCameraAccessGranted, }).then(() => { enumm(); });
 	updatePitch()
+		//toggleLiveInput()
 }
 		 
 function enumm(){
-	 navigator.mediaDevices.enumerateDevices().then(gotDevices)// .then(getStream).catch(handleError);
+	 navigator.mediaDevices.enumerateDevices().then(gotDevices).then(toggleLiveInput).catch(handleError);
 }
 		 
 function toggleLiveInput() {
 	if(thestream){
 		thestream.getTracks().forEach(function (track) { track.stop(); });
 	}
-		getUserMedia(constraints, gotStream);
+	getUserMedia(constraints, gotStream);
 }
 		 
 function gotStream(stream) {
@@ -480,6 +481,8 @@ function handleError(error) { console.error("Error: ", error); }
 		 
 function getUserMedia(constraints, callback) {
 	try {
+		
+		console.log(audioSelect.options[audioSelect.selectedIndex].value)
 		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 		constraints = {
 		audio:{
