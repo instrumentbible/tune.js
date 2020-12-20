@@ -13,3 +13,19 @@ div.vague { color: lightgrey; }
 #sharp { display: none; }
 .flat #flat { display: inline; }
 .sharp #sharp { display: inline; }
+
+input, select{
+	width: 200px;
+	font-size:26px;
+	font-family: 'Courier New', monospace;
+	font-weight:900;
+	padding:0.1em !important
+}
+button{font-size:20px;}
+
+.pitch{
+	font-size:26px;
+	font-family: 'Courier New', monospace;
+	font-weight:900;
+	padding:0.1em
+}

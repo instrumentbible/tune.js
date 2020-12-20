@@ -6,53 +6,90 @@
 		<link href='./css/style.css' rel='stylesheet'>
 	</head>
 	<body>
-		
 		<select id="audioSource"></select>
-		<br>
-		<audio controls id="audioElement"></audio>
-		
-		<p>
-			<button onclick="this.innerText = togglePlayback()">use demo audio</button>
-			<button onclick="toggleLiveInput()">use live input</button>
-			<button onclick="toggleOscillator()">use oscillator</button>
-			<!--<button onclick="updatePitch(0);">sample</button>-->
-		</p>
-
+		<button onclick="toggleLiveInput()">🎤</button>
 		<div id="detector" class="vague">
 			<div class="pitch"><span id="pitch">--</span> Hz</div>
 			<div class="note"><span id="note">--</span></div>
 			<canvas id="output" width=300 height=42></canvas>
-			<div id="detune"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
+			<div id="detune"><input id="detune_amt"></div>
 		</div>
-
-		<canvas id="waveform" width="512" height="256"></canvas>
-		
+		<div>
+			<select id="temperament">
+				<option value="equal" selected>Equal</option>
+				<option value="pythagorean"	>Pythagorean	</option>
+				<option value="meantone"	>Meantone		</option>
+				<option value="werckmeisterI">Werkmeister I	</option>
+				<option value="werckmeisterII">Werkmeister II	</option>
+				<option value="werckmeisterIII">Werkmeister III</option>
+			</select>
+			<label for="temperament">temperament</label>
+		</div>
+		<div>
+			<input id="fundamental" type="number" step="0.1" value="440"></input>
+			<label for="fundamental">fundamental</label>
+		</div>
 		<script src="/js/tune.js"></script>
 		<script>
-			
-			var options = {
+		 // create tuner
+		 var tuner = new Tune({
 			 temperament: "equal",
-			 fundamental: 440
-		 }
-
-		 // create a new tuner
-		 var myTuner = new Tuner(options)
+			 fundamental: 443
+		 });
+		
 		 // set the temperament
-		 myTuner.setTemperament("meantone");
-		 myTuner.tune(44);
-		 myTuner.setWavelength(0.777);
+		 tuner.setTemperament("meantone");
+		 tuner.tune(44);
+		 tuner.setWavelength(0.777);
+		 
+		 // listen for dropdown change
+		 let dropdown = document.querySelector('#temperament');
+		 if (dropdown) dropdown.addEventListener('change', function(event) {
+			 console.log(event.target.value);
+			 tuner.setTemperament(event.target.value);
+		 });
+		
+		// listen for fundamental change
+		let fundamental = document.querySelector('#fundamental');
+		if (fundamental) fundamental.addEventListener('input', function(event) {
+			console.log(event.target.value);
+			tuner.setFundamental(event.target.value);
+		});
+				  
+				
+		function updatePitch( time ) {
+			var cycles = new Array;
+			analyser.getFloatTimeDomainData( buf );
+			var ac = autoCorrelate( buf, audioContext.sampleRate );
+			if (ac == -1) {
+				detectorElem.className = "vague";
+				pitchElem.innerText = "--";
+				noteElem.innerText = "-";
+				detuneElem.className = "";
+				detuneAmount.innerText = "--";
+			} else {
+				detectorElem.className = "confident";
+				frequency = ac;
+				pitchElem.innerText = Math.round( frequency ) ;
+				var note =  Tune.noteFromPitch( frequency );
+				Tune.getNoteName(Tune.ftom(frequency))
+				noteElem.innerHTML = Tune.getNoteName(Tune.ftom(frequency) * -1);
+								
+				var detune = tuner.tune(frequency)
+				if (detune == 0 ) {
+					detuneElem.className = "";
+					detuneAmount.innerHTML = "--";
+				} else {
+				detuneAmount.value =  format(detune);
+				}
+			}
 
-		 // get the current temperament
-		 //console.log(myTuner.getTemperament());
-
-		 //console.log(Tuner.ftom(523.25));
-		 //console.log(Tuner.mtof(69));
-		 //console.log(Tuner.harmonic(440,3));
-		 //console.log(Tuner.getNoteName(63));
-
-		  myTuner.setTemperature(70);
-
-		  console.log(myTuner.getWavelength());
-		  			</script>
+			if (!window.requestAnimationFrame){ window.requestAnimationFrame = window.webkitRequestAnimationFrame;}
+			rafID = window.requestAnimationFrame( updatePitch );
+		}
+								 
+		// add (+) if positive, and round to 4 decimals
+		function format(e){ return (e<0?"":"+") + (e).toFixed(0); }
+</script>
 	</body>
 </html>
