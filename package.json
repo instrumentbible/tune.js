@@ -1,9 +1,11 @@
 {
   "name": "@instrumentbible/tune.js",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A JavaScript library for various tuning systems.",
   "main": "index.js",
   "scripts": {
+	  "start": "electron .",
+
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Josh Stovall",
