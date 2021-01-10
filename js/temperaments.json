@@ -1,5 +1,5 @@
 {
-	equal = [
+	equal : [
 	Math.pow(2, 0/12),
 	Math.pow(2, 1/12),
 	Math.pow(2, 2/12),
