@@ -1,6 +1,6 @@
 # tune.js 🎵
 
-JavaScript library for various tuning systems.   Calculate cents for different temperaments.
+JavaScript library for microtonal tuning systems.
 
 Try the [live demo](https://instrumentbible.github.io/tune.js/).
 
