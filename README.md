@@ -210,7 +210,7 @@ Any contributions you make are **greatly appreciated**. Any bugs and change requ
 
 
 # Questions?   
-Please write to [contact@instrument.bible](mailto://contact@instrument.bible) or visit [instrument.bible](https://instrument.bible).
+Please write to [contact@instrument.bible](mailto:contact@instrument.bible) or visit [instrument.bible](https://instrument.bible).
   
 [![Discord](https://img.shields.io/static/v1?label=&message=Discord%20&logo=discord&logoColor=white&color=7289da)](https://discord.gg/VJDj7nt)  [![Twitter](https://img.shields.io/static/v1?label=&message=Twitter&logo=Twitter&logoColor=white&color=1DA1F2)](https://twitter.com/instrumentbible)  [![YouTube](https://img.shields.io/static/v1?label=&message=Youtube&logo=youtube&logoColor=white&color=FF0000)](https://youtube.com/channel/UCkw7klLsjYXYGzFT-9a3WMA)  [![Facebook](https://img.shields.io/static/v1?label=&message=Facebook&logo=facebook&logoColor=white&color=3c5a99)](https://facebook.com/instrumentbible)  [![LinkedIn](https://img.shields.io/static/v1?label=&message=LinkedIn&logo=LinkedIn&logoColor=white&color=0077b5)](https://linkedin.com/company/instrumentbible)  [![Instagram](https://img.shields.io/static/v1?label=&message=Instagram&logo=Instagram&logoColor=white&color=e1306c)](https://instagram.com/instrument.bible)
 
