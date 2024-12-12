@@ -1,8 +1,8 @@
-# tune.js 🎵
-
 JavaScript library for microtonal tuning systems.
 
 Try the [live demo](https://instrumentbible.github.io/tune.js/).
+
+![tune js](https://github.com/user-attachments/assets/a6359b23-ed32-43cc-b357-68416137b61d)
 
 # Features 
 * calculate cents based on various temperaments
